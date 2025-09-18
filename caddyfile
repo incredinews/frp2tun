@@ -1,0 +1,22 @@
+{
+    on_demand_tls {
+        #ask http://127.0.0.1:6790/ask/
+    }
+    log {
+        output file /dev/stdout {
+        #roll_size 100m
+        #roll_keep 5
+        #roll_keep_for 720h
+        level EROR
+	}
+
+	}
+
+}
+
+* {
+  reverse_proxy http://127.0.0.1:8000
+  tls {
+    on_demand
+  }
+}
