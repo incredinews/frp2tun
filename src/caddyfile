@@ -1,5 +1,5 @@
 {
-debug
+#debug
     log {
         output file /dev/stdout {
         #roll_size 100m
