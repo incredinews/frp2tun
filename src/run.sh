@@ -14,4 +14,4 @@ test -e /tmp/caddyfile || (while (true);do caddy run --config /etc/caddyfile --a
 
 [[ -z "$EXTIPS" ]] || (while (true);do bash -c ". /etc/venv/bin/activate ;python3 /etc/ask.py 6790" 2>&1 |grep -v ^$ ;sleep 10;done ) & 
 
-while (true);do /usr/bin/frps -c /opt/frps.toml;sleep 5 ;done
+while (true);do /usr/bin/frps -c /opt/frps.toml 2>&1 |grep -v -e "client exit success" -e 'server/dashboard_api.*request' -e 'server/dashboard_api.*http response.*code \[200\]' -e "non-TLS connection received on a TlsOnly server" ;sleep 5 ;done
