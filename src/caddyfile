@@ -15,11 +15,59 @@
 
 #Listen
 :443 {
-  reverse_proxy http://127.0.0.1:8000
   tls {
     on_demand
  }
+  reverse_proxy http://127.0.0.1:8000 {
+  }
 }
+
+## THANKS FOR NOTHING CADDY FCKRS
+###Listen
+##:444 {
+##  tls intetal
+##  reverse_proxy http://127.0.0.1:8000 {
+##  }
+##}
+
+
+#:6790 {
+#	respond /ask 200
+#	respond "Hello, world!"
+#}
+
+
+#TLS Options
+#tls myemail@mydomain.com {
+#  on_demand
+#}
+
+## CADDY IS A BULLSHIT PRODUCT WHICH CANT EASY FALLBACK TO SELF SIGNED TLS
+# FCK THEM FOR NOW AND OPEN TWO PORTS, THE THIRD PORT MIGHT BE FORWARDED TO HELL AND THE "INGENIOUS" DEVS  COULD JUST GO THERE ;)
+
+## AND IT GOES FCKIN FURTHER SINCE YOU CANNOT EASILY HAVE A SELF SIGNED AND TLS_ASK PORT
+#####Listen
+#####:443 {
+####https:// {
+####  @direct {
+####		header "X-Forwarded-For" ""
+####	}
+####  @passed {
+####		header "X-Forwarded-For" "*"
+####	}
+####  tls @direct {
+####    on_demand
+#### }
+####	tls @passed {
+####    		issuer internal {
+####		}
+####  }
+####  reverse_proxy http://127.0.0.1:8000 {
+####    
+####  }
+####
+####
+####}
 
 #:6790 {
 #	respond /ask 200
