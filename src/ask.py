@@ -34,7 +34,7 @@ class S(BaseHTTPRequestHandler):
         if self.path.startswith("/ask") and self.path.startswith("/ask?domain="):
             #print("incoming "+self.path)
             mydomain=self.path.split("=")[1]
-            print("domain: "+mydomain)
+            #print("domain: "+mydomain)
 
             if "." in mydomain and len(mydomain)>3:
                 dohurl = 'https://cloudflare-dns.com/dns-query'
@@ -87,7 +87,7 @@ class S(BaseHTTPRequestHandler):
                 if len(extips) == 0 and len(foundips) == 0 :
                     self._set_response()
                 else:
-                    msg="NO_IP_MATCH_FOR: external "+json.dumps(extips)+" current: "+json.dumps(foundips)
+                    msg="NO_IP_MATCH_FOR: "+mydomain+" external "+json.dumps(extips)+" current: "+json.dumps(foundips)
                     print(msg)
                     self._set_response_err(msg)
                 return True
