@@ -9,32 +9,32 @@
         #level ERROR
 	}
   on_demand_tls {
-         ask http://127.0.0.1:6790/ask
+         #ask http://127.0.0.1:6790/ask
+         ask http://127.0.0.1:6791/ask
   }
+  tls {
+    issuer acme 
+    #issuer zerossl
+    issuer internal
+  }
+  
 }
 
 #Listen
 :443 {
   tls {
     on_demand
+    issuer acme
+
  }
   reverse_proxy http://127.0.0.1:8000 {
   }
 }
 
-## THANKS FOR NOTHING CADDY FCKRS
-###Listen
-##:444 {
-##  tls intetal
-##  reverse_proxy http://127.0.0.1:8000 {
-##  }
-##}
-
-
-#:6790 {
-#	respond /ask 200
-#	respond "Hello, world!"
-#}
+:6791 {
+	respond /ask 200
+	respond "Hello, world!"
+}
 
 
 #TLS Options
