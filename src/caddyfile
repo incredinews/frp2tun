@@ -5,6 +5,7 @@ debug
         #roll_size 100m
         #roll_keep 5
         #roll_keep_for 720h
+        }
         #level ERROR
 	}
 on_demand_tls {
