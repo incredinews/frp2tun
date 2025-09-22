@@ -1,22 +1,32 @@
 {
-    #on_demand_tls {
-    #    ask http://127.0.0.1:6790/ask/
-    #}
+debug
     log {
         output file /dev/stdout {
         #roll_size 100m
         #roll_keep 5
         #roll_keep_for 720h
-        level EROR
+        level ERROR
 	}
-
-	}
-
+on_demand_tls {
+         ask http://127.0.0.1:6790/ask
+  }
 }
 
-* {
+#Listen
+:443 {
   reverse_proxy http://127.0.0.1:8000
   tls {
     on_demand
-  }
+ }
 }
+
+#:6790 {
+#	respond /ask 200
+#	respond "Hello, world!"
+#}
+
+
+#TLS Options
+#tls myemail@mydomain.com {
+#  on_demand
+#}
