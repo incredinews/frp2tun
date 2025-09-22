@@ -23,7 +23,6 @@ class S(BaseHTTPRequestHandler):
         self.send_response(code)
         #self.send_header('Content-type', 'text/html')
         #self.end_headers()
-
         #return false;
 
     def do_GET(self):
@@ -35,7 +34,6 @@ class S(BaseHTTPRequestHandler):
             #print("incoming "+self.path)
             mydomain=self.path.split("=")[1]
             #print("domain: "+mydomain)
-
             if "." in mydomain and len(mydomain)>3:
                 dohurl = 'https://cloudflare-dns.com/dns-query'
                 dnsanswers=[]
@@ -108,14 +106,11 @@ class S(BaseHTTPRequestHandler):
 #                   mytype="AAAA"
 #                else:
 #                   mytype="A"
-
 #               
 #                if(ae.status_code==200):
 #                    resjson=ae.json()
 #                    print(resjson["Answer"])
 #                    self._set_response()
-            
-            
         else:
             logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
             print(self.path)
