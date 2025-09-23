@@ -12,19 +12,16 @@
          #ask http://127.0.0.1:6790/ask
          ask http://127.0.0.1:6791/ask
   }
-
   
 }
 
 #Listen
 :443 {
-  tls mocenarcniffit@tiffincrane.com {
-    on_demand
+  tls {
+#    on_demand
     issuer acme 
     #issuer zerossl
     issuer internal
-
-
  }
   reverse_proxy http://127.0.0.1:8000 {
   }
